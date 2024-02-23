@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+
+ echo '👷 Hello Bot Contributor, Please wait while we format and lint your work before committing'
+
+ # Check Prettier standards
+ npm run check:format ||
+ (
+     echo '👷 Oooops 🤢🤮🤢🤮 - Your formatting is not the best. 🤢🤮🤢🤮
+             Prettier Checks Failed. Run npm run fix:format, add changes and try committing again.';
+     false;
+ )
+
+ # Check ESLint Standards
+ npm run check:lint ||
+(
+         echo '👷 Ah! You failed to follow our linting standards 😤🏀👋😤
+                 ESLint Checks Failed. Make the required changes listed above, run  npm run fix:lint, to automatically fix some linting issues, add changes and try to commit again.';
+         false;
+)
+
+
+ # Check ESLint Standards
+ npm run test ||
+(
+         echo '👷 Test errors here';
+         false;
+)
+
+# If everything passes... Now we can commit
+echo '👷 Hurrayyyyy... You did just a great job. ✅✅✅✅  I am committing this now. ✅✅✅✅'
