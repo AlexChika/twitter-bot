@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { createServer } from "https";
 import app from "./app";
 import start from "../lib";

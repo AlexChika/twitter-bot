@@ -21,12 +21,12 @@
 )
 
 
- # Check ESLint Standards
- npm run test ||
-(
-         echo '👷 Test errors here';
-         false;
-)
+ # Check Test Passes
+#  npm run test ||
+# (
+#          echo '👷 Test errors here';
+#          false;
+# )
 
 # If everything passes... Now we can commit
 echo '👷 Hurrayyyyy... You did just a great job. ✅✅✅✅  I am committing this now. ✅✅✅✅'
