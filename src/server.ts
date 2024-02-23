@@ -1,27 +1,17 @@
-import express from "express";
+import { createServer } from "https";
+import app from "./app";
+import start from "../lib";
 
-const app = express();
+const server = createServer(app);
 
-console.log({ app });
-
-function start() {
-  const promise = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("completed");
-    }, 1000);
-  });
-
-  return promise;
-}
-
-let a = "a";
-a = 5;
-
-console.log(a);
+const PORT = process.env.PORT || 5000;
 
 setInterval(() => {
-  (async () => {
-    await start();
-    console.log("finished");
+  (() => {
+    start().then((timer) => console.log(timer));
   })();
-}, 5000);
+}, 10000);
+
+server.listen(PORT, () => {
+  console.log(`listening on ${PORT}`);
+});
