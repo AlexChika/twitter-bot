@@ -7,7 +7,7 @@ let time = 0;
 const url = "https://twitter-bot-p130.onrender.com";
 
 const restartJob = CronJob.from({
-  cronTime: "*/1 * * * *",
+  cronTime: "*/14 * * * *",
   onTick() {
     https.get(url, (res) => {
       if (res.statusCode === 200) {
