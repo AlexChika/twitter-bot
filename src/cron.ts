@@ -1,25 +1,23 @@
 /* eslint-disable no-console */
 
 import { CronJob } from "cron";
-import https from "https";
+import http from "http";
 
-let time = 0;
-const url = "https://twitter-bot-p130.onrender.com";
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://twitter-bot-p130.onrender.com"
+    : "https://localhost:5000";
 
 const restartJob = CronJob.from({
   cronTime: "*/14 * * * *",
   onTick() {
-    https.get(url, (res) => {
+    http.get(url, (res) => {
       if (res.statusCode === 200) {
         console.log(res.statusMessage);
         console.log("Server restarted");
       } else console.error(`Server restart failed ${res.statusCode}`);
     });
-
-    time += 1;
-    console.log({ time });
   },
-  // timeZone: "America/Los_Angeles",
   start: false
 });
 

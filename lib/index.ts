@@ -6,7 +6,7 @@ function start() {
     const currTime = Number((Date.now() / 1000).toFixed());
     const timePassed = currTime - time;
 
-    resolve(timePassed);
+    resolve(timePassed / 60);
   });
 
   return promise;
